@@ -2,21 +2,31 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Осталось добавить:
+        //- работу с текстовыми файлами
+        //- обработку всех исключений, и все возможные проверки
         Scanner in = new Scanner(System.in);
+        char[] output = {};
         System.out.print("Введите значение сдвига элементов: "); int shift = in.nextInt();
         System.out.print("Введите текст для шифрования: "); char[] input = in.next().toLowerCase().toCharArray();
-        System.out.print("Какой метод вы хотите использовать?\n1 - Шифрование текста\n2 - Дешифрование текста");
         while(true){
+            System.out.print("Какой метод вы хотите использовать?\n1 - Шифрование текста\n2 - Дешифрование текста\n3 - Поменять конфигурацию\n");
             switch (in.nextInt()){
                 case 1:
-                    System.out.println(Encryption(input, shift));
-                    return;
+                    output = Encryption(input, shift);
+                    System.out.println(output);
+                    break;
                 case 2:
-
-                    return;
+                    output = Decryption(output, shift);
+                    System.out.println(output);
+                    break;
+                case 3:
+                    System.out.print("Введите значение сдвига элементов: "); shift = in.nextInt();
+                    System.out.print("Введите текст для шифрования: "); input = in.next().toLowerCase().toCharArray();
+                    break;
                 default:
                     System.out.print("Нет метода под таким номером!\n");
-                    break;
+                    return;
             }
         }
     }
